@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -50,6 +50,7 @@ function ViewClinic() {
        
         clinic_HTMLTABLE = clinics.map( (item, index) => {
             return (
+                
                 <tr key={index}>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
