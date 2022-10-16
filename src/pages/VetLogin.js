@@ -1,39 +1,48 @@
-import React, {useState} from 'react';
-import { useHistory } from "react-router-dom";
+import React , {useState}from 'react';
+import {useHistory, Link} from 'react-router-dom';
 
-function Vetlogin() {
-  const [email, setEmail]=useState("");
-  const [password, setPassword]=useState("");
-  
-  
-  const history = useHistory();
-    return (
-        <div className="container">
-        <div className="content">
-          <div className="heading-container">
-  
-            <div>
-              <h1>
-                'Vetamina'
-              </h1>
-            </div>
+const VetLogin = () =>
+{
+    const [email, setEmail]=useState("");
+    const [password, setPassword]=useState("");
+    const history = useHistory();
 
-          </div>
+    async function login()
+    {
+        let item={email,password};
+        let result = await fetch("http://localhost:8000/api/vetlogin",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": 'application/json',
+            },
+            body:JSON.stringify(item)
 
-          <div className="col-sm-6 offset-sm-3">
-            <h1>Login</h1>
-            <input type="text"  value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="email"/>
-            <br />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" placeholder="password"/>
-            <br />
+        });
+        result = await result.json();
+        localStorage.setItem("user-info",JSON.stringify(result));
+        if("error" in result){
+          alert("error message");
+        }else{
+          history.push("/clinics");
+        }
+    }
+    return(
+        <div>
             
-            <button className="btn btn-primary" >Login</button>
-          </div>
-          
-  
+            <div className="col-sm-6 offset-sm-3">
+                <h1>Seller Login Page</h1>
+                <p>Login to continue</p>
+                <input type ="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} className="form-control"/><br/>
+                <input type ="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}className="form-control"/><br/>
+
+                <button onClick={login}className="btn btn-primary">Login</button>
+                <p>Don't have account? <Link to ="/VetRegister">Register here</Link></p>
+            </div>
+            
+
         </div>
-      </div>
-    );
-  }
-  
-export default Vetlogin;
+    )
+}
+
+export default VetLogin;
