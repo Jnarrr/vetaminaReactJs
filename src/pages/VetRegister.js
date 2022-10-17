@@ -4,14 +4,14 @@ const VetSignup = () => {
 
   const [name, setName]=useState("");
   const [email, setEmail]=useState("");
-  const [phone, setPhone]=useState("");
+  const [phone_number, setPhone]=useState("");
   const [password, setPassword]=useState("");
   
   
   const history = useHistory();
 
   async function vetsignup(){
-    let item={name,email,phone,password}
+    let item={name,email,phone_number,password}
     console.warn(item)
     
     let result = await fetch("http://localhost:8000/api/vetregister",{
@@ -53,7 +53,7 @@ const VetSignup = () => {
           <br />
           <input type="text"  value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="email"/>
           <br />
-          <input type="text"  value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" placeholder="phone"/>
+          <input type="text"  value={phone_number} onChange={(e) => setPhone(e.target.value)} className="form-control" placeholder="phone"/>
           <br />
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" placeholder="password"/>
           <br />
