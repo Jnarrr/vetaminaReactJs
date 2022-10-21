@@ -4,30 +4,30 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import Navbar from './Navbar';
 
-function ViewClinic() {
+function ViewProduct() {
 
     const [loading, setLoading] = useState(true);
-    const [clinics, setClinics] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
 
-        axios.get(`/api/clinics`).then(res=>{
+        axios.get(`/api/products`).then(res=>{
             if(res.status === 200)
             {
-                setClinics(res.data.clinics)
+                setProducts(res.data.products)
                 setLoading(false);
             }
         });
 
     }, []);
 
-    const deleteClinic = (e, id) => {
+    const deleteProduct = (e, id) => {
         e.preventDefault();
         
         const thisClicked = e.currentTarget;
         thisClicked.innerText = "Deleting";
 
-        axios.delete(`/api/delete-clinic/${id}`).then(res=>{
+        axios.delete(`/api/delete-product/${id}`).then(res=>{
             if(res.data.status === 200)
             {
                 swal("Deleted!",res.data.message,"success");
@@ -43,27 +43,25 @@ function ViewClinic() {
 
     if(loading)
     {
-        return <h4>Loading Clinic Data...</h4>
+        return <h4>Loading Product Data...</h4>
     }
     else
     {
-        var clinic_HTMLTABLE = "";
+        var product_HTMLTABLE = "";
        
-        clinic_HTMLTABLE = clinics.map( (item, index) => {
+        product_HTMLTABLE = products.map( (item, index) => {
             return (
                 
                 <tr key={index}>
                     <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.address}</td>
-                    <td>{item.email}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.services}</td>
+                    <td>{item.product_name}</td>
+                    <td>{item.product_price}</td>
+                    <td>{item.product_description}</td>
                     <td>
-                        <Link to={`edit-clinic/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                        <Link to={`edit-product/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                     </td>
                     <td>
-                        <button type="button" onClick={(e) => deleteClinic(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" onClick={(e) => deleteProduct(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
             );
@@ -79,8 +77,8 @@ function ViewClinic() {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Clinics Data
-                                    <Link to={'add-clinics'} className="btn btn-primary btn-sm float-end"> Add Clinic</Link>
+                                <h4>Products Data
+                                    <Link to={'add-product'} className="btn btn-primary btn-sm float-end"> Add Product</Link>
                                 </h4>
                             </div>
                             <div className="card-body">
@@ -90,16 +88,14 @@ function ViewClinic() {
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Address</th>
-                                            <th>Email Id</th>
-                                            <th>Phone</th>
-                                            <th>Services</th>
+                                            <th>Price</th>
+                                            <th>Description</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {clinic_HTMLTABLE}
+                                        {product_HTMLTABLE}
                                     </tbody>
                                 </table>
 
@@ -114,4 +110,4 @@ function ViewClinic() {
 
 }
 
-export default ViewClinic;
+export default ViewProduct;

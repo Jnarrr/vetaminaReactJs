@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
+import Navbar from './Navbar';
 
 function AddClinic() {
 
@@ -54,6 +55,8 @@ function AddClinic() {
     }
 
     return (
+        <>
+        <Navbar />
         <div>
             <div className="container">
                 <div className="row justify-content-center">
@@ -104,6 +107,7 @@ function AddClinic() {
                 </div>
             </div>
         </div>
+        </>
     );
 
 }
