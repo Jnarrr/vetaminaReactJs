@@ -18,6 +18,9 @@ import Dashboard from './pages/Dashboard';
 import ViewService from './pages/ViewService';
 import AddService from './pages/AddService';
 import EditService from './pages/EditService';
+import ViewEmployee from './pages/ViewEmployee';
+import AddEmployee from './pages/AddEmployee';
+import EditEmployee from './pages/EditEmployee';
 
 axios.defaults.baseURL = "http://localhost:8000/";
 
@@ -34,6 +37,10 @@ function App() {
             <Route path="/clinics" component={ViewClinic} />
             <Route path="/add-clinics" component={AddClinic} />
             <Route path="/edit-clinic/:id" component={EditClinic} />
+
+            <Route path="/employees" component={ViewEmployee} />
+            <Route path="/add-employee" component={AddEmployee} />
+            <Route path="/edit-employee/:id" component={EditEmployee} />
 
             <Route path="/products" component={ViewProduct} />
             <Route path="/add-product" component={AddProduct} />
