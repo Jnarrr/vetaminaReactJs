@@ -1,26 +1,32 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+//Product CRUD
+import ViewProduct from './pages/ProductFile/ViewProduct';
+import AddProduct from './pages/ProductFile/AddProduct';
+import EditProduct from './pages/ProductFile/EditProduct';
+//Clinic CRUD
+import ViewClinic from './pages/ClinicFile/ViewClinic';
+import AddClinic from './pages/ClinicFile/AddClinic';
+import EditClinic from './pages/ClinicFile/EditClinic';
+//Service CRUD
+import ViewService from './pages/ServiceFile/ViewService';
+import AddService from './pages/ServiceFile/AddService';
+import EditService from './pages/ServiceFile/EditService';
+//Employee CRUD
+import ViewEmployee from './pages/EmployeeFile/ViewEmployee';
+import AddEmployee from './pages/EmployeeFile/AddEmployee';
+import EditEmployee from './pages/EmployeeFile/EditEmployee';
 
-import ViewProduct from './pages/ViewProduct';
-import AddProduct from './pages/AddProduct';
-
-import ViewClinic from './pages/ViewClinic';
-import AddClinic from './pages/AddClinic';
-import EditClinic from './pages/EditClinic';
 import VetSignup from './pages/VetRegister';
 import VetLogin from './pages/VetLogin';
 import ViewAppointment from './pages/ViewAppointment';
 import Welcome from './pages/Welcome';
 
 import axios from 'axios';
-import EditProduct from './pages/EditProduct';
+
 import Dashboard from './pages/Dashboard';
-import ViewService from './pages/ViewService';
-import AddService from './pages/AddService';
-import EditService from './pages/EditService';
-import ViewEmployee from './pages/ViewEmployee';
-import AddEmployee from './pages/AddEmployee';
-import EditEmployee from './pages/EditEmployee';
+
+
 
 axios.defaults.baseURL = "http://localhost:8000/";
 

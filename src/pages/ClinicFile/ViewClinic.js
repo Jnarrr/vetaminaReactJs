@@ -2,32 +2,32 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-import Navbar from './Navbar';
+import Navbar from '../Navbar';
 
-function ViewEmployee() {
+function ViewClinic() {
 
     const [loading, setLoading] = useState(true);
-    const [employees, setEmployees] = useState([]);
+    const [clinics, setClinics] = useState([]);
 
     useEffect(() => {
 
-        axios.get(`/api/employees`).then(res=>{
+        axios.get(`/api/clinics`).then(res=>{
             if(res.status === 200)
             {
-                setEmployees(res.data.employees)
+                setClinics(res.data.clinics)
                 setLoading(false);
             }
         });
 
     }, []);
 
-    const deleteEmployee = (e, id) => {
+    const deleteClinic = (e, id) => {
         e.preventDefault();
         
         const thisClicked = e.currentTarget;
         thisClicked.innerText = "Deleting";
 
-        axios.delete(`/api/delete-employee/${id}`).then(res=>{
+        axios.delete(`/api/delete-clinic/${id}`).then(res=>{
             if(res.data.status === 200)
             {
                 swal("Deleted!",res.data.message,"success");
@@ -43,30 +43,31 @@ function ViewEmployee() {
 
     if(loading)
     {
-        return <h4>Loading Employee Data...</h4>
+        return <h4>Loading Clinic Data...</h4>
     }
     else
     {
-        var employee_HTMLTABLE = "";
+        var clinic_HTMLTABLE = "";
        
-        employee_HTMLTABLE = employees.map( (item, index) => {
+        clinic_HTMLTABLE = clinics.map( (item, index) => {
             return (
                 
                 <tr key={index}>
                     <td>{item.id}</td>
-                    <td>{item.employee_name}</td>
-                    <td>{item.employee_email}</td>
-                    <td>{item.employee_phone_number}</td>
+                    <td>{item.name}</td>
+                    <td>{item.address}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.services}</td>
                     <td>
-                        <Link to={`edit-employee/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                        <Link to={`edit-clinic/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                     </td>
                     <td>
-                        <button type="button" onClick={(e) => deleteEmployee(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" onClick={(e) => deleteClinic(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
             );
         });
-
     }
 
     return (
@@ -78,8 +79,8 @@ function ViewEmployee() {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Employees Data
-                                    <Link to={'add-employee'} className="btn btn-primary btn-sm float-end"> Add Employee</Link>
+                                <h4>Clinics Data
+                                    <Link to={'add-clinics'} className="btn btn-primary btn-sm float-end"> Add Clinic</Link>
                                 </h4>
                             </div>
                             <div className="card-body">
@@ -89,14 +90,16 @@ function ViewEmployee() {
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
+                                            <th>Address</th>
+                                            <th>Email Id</th>
+                                            <th>Phone</th>
+                                            <th>Services</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {employee_HTMLTABLE}
+                                        {clinic_HTMLTABLE}
                                     </tbody>
                                 </table>
 
@@ -111,4 +114,4 @@ function ViewEmployee() {
 
 }
 
-export default ViewEmployee;
+export default ViewClinic;

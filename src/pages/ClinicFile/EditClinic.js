@@ -27,7 +27,7 @@ function EditClinic(props) {
             }
         });
 
-    }, [history]);
+    }, [history, props.match.params.id]);
 
     const handleInput = (e) => {
         e.persist();

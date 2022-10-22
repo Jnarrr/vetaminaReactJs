@@ -2,32 +2,32 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-import Navbar from './Navbar';
+import Navbar from '../Navbar';
 
-function ViewProduct() {
+function ViewEmployee() {
 
     const [loading, setLoading] = useState(true);
-    const [products, setProducts] = useState([]);
+    const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
 
-        axios.get(`/api/products`).then(res=>{
+        axios.get(`/api/employees`).then(res=>{
             if(res.status === 200)
             {
-                setProducts(res.data.products)
+                setEmployees(res.data.employees)
                 setLoading(false);
             }
         });
 
     }, []);
 
-    const deleteProduct = (e, id) => {
+    const deleteEmployee = (e, id) => {
         e.preventDefault();
         
         const thisClicked = e.currentTarget;
         thisClicked.innerText = "Deleting";
 
-        axios.delete(`/api/delete-product/${id}`).then(res=>{
+        axios.delete(`/api/delete-employee/${id}`).then(res=>{
             if(res.data.status === 200)
             {
                 swal("Deleted!",res.data.message,"success");
@@ -43,25 +43,25 @@ function ViewProduct() {
 
     if(loading)
     {
-        return <h4>Loading Product Data...</h4>
+        return <h4>Loading Employee Data...</h4>
     }
     else
     {
-        var product_HTMLTABLE = "";
+        var employee_HTMLTABLE = "";
        
-        product_HTMLTABLE = products.map( (item, index) => {
+        employee_HTMLTABLE = employees.map( (item, index) => {
             return (
                 
                 <tr key={index}>
                     <td>{item.id}</td>
-                    <td>{item.product_name}</td>
-                    <td>{item.product_price}</td>
-                    <td>{item.product_description}</td>
+                    <td>{item.employee_name}</td>
+                    <td>{item.employee_email}</td>
+                    <td>{item.employee_phone_number}</td>
                     <td>
-                        <Link to={`edit-product/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                        <Link to={`edit-employee/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                     </td>
                     <td>
-                        <button type="button" onClick={(e) => deleteProduct(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" onClick={(e) => deleteEmployee(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
             );
@@ -78,8 +78,8 @@ function ViewProduct() {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Products Data
-                                    <Link to={'add-product'} className="btn btn-primary btn-sm float-end"> Add Product</Link>
+                                <h4>Employees Data
+                                    <Link to={'add-employee'} className="btn btn-primary btn-sm float-end"> Add Employee</Link>
                                 </h4>
                             </div>
                             <div className="card-body">
@@ -89,14 +89,14 @@ function ViewProduct() {
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
+                                            <th>Email</th>
+                                            <th>Phone Number</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {product_HTMLTABLE}
+                                        {employee_HTMLTABLE}
                                     </tbody>
                                 </table>
 
@@ -111,4 +111,4 @@ function ViewProduct() {
 
 }
 
-export default ViewProduct;
+export default ViewEmployee;
