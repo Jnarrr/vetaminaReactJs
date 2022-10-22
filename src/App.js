@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import ViewProduct from './pages/ViewProduct';
 import AddProduct from './pages/AddProduct';
@@ -14,16 +14,22 @@ import Welcome from './pages/Welcome';
 
 import axios from 'axios';
 import EditProduct from './pages/EditProduct';
+import Dashboard from './pages/Dashboard';
+import ViewService from './pages/ViewService';
+import AddService from './pages/AddService';
+import EditService from './pages/EditService';
 
 axios.defaults.baseURL = "http://localhost:8000/";
 
 function App() {
   return (
     <div className="App">
-        <Router>
+        <Router exact path="/">
+          <Redirect to="/welcome" />
           <Switch>
 
             <Route path="/welcome" component={Welcome} />
+            <Route path="/dashboard" component={Dashboard} />
 
             <Route path="/clinics" component={ViewClinic} />
             <Route path="/add-clinics" component={AddClinic} />
@@ -32,6 +38,14 @@ function App() {
             <Route path="/products" component={ViewProduct} />
             <Route path="/add-product" component={AddProduct} />
             <Route path="/edit-product/:id" component={EditProduct} />
+
+            <Route path="/services" component={ViewService} />
+            <Route path="/add-service" component={AddService} />
+            <Route path="/edit-service/:id" component={EditService} />
+
+            {/*<Route path="/AdminLogin" component={AdminLogin} />
+            <Route path="/AdminTable" component={AdminTable} />
+            <Route path="/edit-table/:id" component={EditTable} />*/}
 
             <Route path="/VetRegister" component={VetSignup} />
             <Route path="/VetLogin" component={VetLogin} />

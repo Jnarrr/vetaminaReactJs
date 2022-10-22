@@ -31,7 +31,7 @@ const VetLogin = () =>
         <div>
             
             <div className="col-sm-6 offset-sm-3">
-                <h1>Seller Login Page</h1>
+                <h1>Login</h1>
                 <p>Login to continue</p>
                 <input type ="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} className="form-control"/><br/>
                 <input type ="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}className="form-control"/><br/>

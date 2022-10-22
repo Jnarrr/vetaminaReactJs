@@ -4,30 +4,30 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import Navbar from './Navbar';
 
-function ViewProduct() {
+function ViewService() {
 
     const [loading, setLoading] = useState(true);
-    const [products, setProducts] = useState([]);
+    const [services, setServices] = useState([]);
 
     useEffect(() => {
 
-        axios.get(`/api/products`).then(res=>{
+        axios.get(`/api/services`).then(res=>{
             if(res.status === 200)
             {
-                setProducts(res.data.products)
+                setServices(res.data.services)
                 setLoading(false);
             }
         });
 
     }, []);
 
-    const deleteProduct = (e, id) => {
+    const deleteService = (e, id) => {
         e.preventDefault();
         
         const thisClicked = e.currentTarget;
         thisClicked.innerText = "Deleting";
 
-        axios.delete(`/api/delete-product/${id}`).then(res=>{
+        axios.delete(`/api/delete-service/${id}`).then(res=>{
             if(res.data.status === 200)
             {
                 swal("Deleted!",res.data.message,"success");
@@ -43,25 +43,25 @@ function ViewProduct() {
 
     if(loading)
     {
-        return <h4>Loading Product Data...</h4>
+        return <h4>Loading Service Data...</h4>
     }
     else
     {
-        var product_HTMLTABLE = "";
+        var service_HTMLTABLE = "";
        
-        product_HTMLTABLE = products.map( (item, index) => {
+        service_HTMLTABLE = services.map( (item, index) => {
             return (
                 
                 <tr key={index}>
                     <td>{item.id}</td>
-                    <td>{item.product_name}</td>
-                    <td>{item.product_price}</td>
-                    <td>{item.product_description}</td>
+                    <td>{item.service_name}</td>
+                    <td>{item.service_price}</td>
+                    <td>{item.service_description}</td>
                     <td>
-                        <Link to={`edit-product/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                        <Link to={`edit-service/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                     </td>
                     <td>
-                        <button type="button" onClick={(e) => deleteProduct(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" onClick={(e) => deleteService(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
             );
@@ -78,8 +78,8 @@ function ViewProduct() {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Products Data
-                                    <Link to={'add-product'} className="btn btn-primary btn-sm float-end"> Add Product</Link>
+                                <h4>Services Data
+                                    <Link to={'add-service'} className="btn btn-primary btn-sm float-end"> Add Service</Link>
                                 </h4>
                             </div>
                             <div className="card-body">
@@ -96,7 +96,7 @@ function ViewProduct() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {product_HTMLTABLE}
+                                        {service_HTMLTABLE}
                                     </tbody>
                                 </table>
 
@@ -111,4 +111,4 @@ function ViewProduct() {
 
 }
 
-export default ViewProduct;
+export default ViewService;
