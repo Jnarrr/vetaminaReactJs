@@ -161,11 +161,17 @@ function Dashboard() {
                 
                 <tr key={index}>
                     <td>{item.id}</td>
-                    <td>{item.name}</td>
+                    <td>{item.username}</td>
+                    <td>{item.password}</td>
+                    <td>{item.registration_number}</td>
+                    <td>{item.owner_name}</td>
+                    <td>{item.clinic_name}</td>
+                    <td>{item.phone_number}</td>
                     <td>{item.address}</td>
                     <td>{item.email}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.services}</td>
+                    
+                    <td><img src={ "http://localhost:8000/" + item.permit } className="img-fluid img-bordered" width="200px" alt='alternative'/></td>
+                    <td>{item.verified}</td>
                     <td>
                         <Link to={`edit-clinic/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                     </td>
@@ -270,11 +276,16 @@ function Dashboard() {
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Registration #</th>
+                                            <th>Owner Name</th>
+                                            <th>Clinic Name</th>
+                                            <th>Phone Number</th>
                                             <th>Address</th>
-                                            <th>Email Id</th>
-                                            <th>Phone</th>
-                                            <th>Services</th>
+                                            <th>Email</th>
+                                            <th>Permit</th>
+                                            <th>Verified</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>

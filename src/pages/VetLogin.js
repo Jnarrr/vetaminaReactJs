@@ -24,7 +24,7 @@ const VetLogin = () =>
         if("error" in result){
           alert("error message");
         }else{
-          history.push("/clinics");
+          history.push("/dashboard");
         }
     }
     return(
@@ -38,6 +38,7 @@ const VetLogin = () =>
 
                 <button onClick={login}className="btn btn-primary">Login</button>
                 <p>Don't have account? <Link to ="/VetRegister">Register here</Link></p>
+                <p><Link to ="/AdminLogin">Admin Login</Link></p>
             </div>
             
 

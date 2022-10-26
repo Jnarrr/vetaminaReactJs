@@ -25,6 +25,8 @@ import Welcome from './pages/Welcome';
 import axios from 'axios';
 
 import Dashboard from './pages/Dashboard';
+import AdminLogin from './pages/AdminLogin';
+import AdminTable from './pages/AdminTable';
 
 
 
@@ -56,9 +58,9 @@ function App() {
             <Route path="/add-service" component={AddService} />
             <Route path="/edit-service/:id" component={EditService} />
 
-            {/*<Route path="/AdminLogin" component={AdminLogin} />
+            <Route path="/AdminLogin" component={AdminLogin} />
             <Route path="/AdminTable" component={AdminTable} />
-            <Route path="/edit-table/:id" component={EditTable} />*/}
+            {/*<Route path="/edit-table/:id" component={EditTable} />*/}
 
             <Route path="/VetRegister" component={VetSignup} />
             <Route path="/VetLogin" component={VetLogin} />

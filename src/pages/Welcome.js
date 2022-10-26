@@ -8,6 +8,8 @@ function Welcome() {
         <Link to="/VetLogin">Login</Link>
         <br></br>
         <Link to="/VetRegister">Register</Link>
+        <br></br>
+        <p><Link to ="/AdminLogin">Admin Login</Link></p>
       </div>
     );
   }
