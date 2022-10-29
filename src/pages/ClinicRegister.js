@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-function AddClinic() {
+function ClinicRegister() {
 
     const history = useHistory();
     const [username, setUsername] = useState('');
@@ -15,26 +15,7 @@ function AddClinic() {
     const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
     const [permit, setPermit] = useState('');
-    const [verified, setVerified] = useState('0');
-   // const [error_list, setError_list] = useState([]);
-    /*const [clinicInput, setClinic] = useState({
-        username: '',
-        password: '',
-        registration_number: '',
-        owner_name: '',
-        clinic_name: '',
-        phone_number: '',
-        address: '',
-        email: '',
-        permit: '',
-        verified: '',
-        error_list: [],
-    });
-
-    const handleInput = (e) => {
-        e.persist();
-        setClinic({...clinicInput, [e.target.name]: e.target.value })
-    }*/
+    const [verified, setVerified] = useState('false');
 
     const saveClinic = (e) => {
         e.persist();
@@ -52,19 +33,6 @@ function AddClinic() {
         formData.append('permit', permit);
         formData.append('verified', verified);
 
-        /*const data = {
-            username,
-            password,
-            registration_number,
-            owner_name,
-            clinic_name,
-            phone_number,
-            address,
-            email,
-            permit,
-            verified
-        }*/
-
         axios.post(`/api/add-clinic`, formData).then(res => {
             if(res.data.status === 200)
             {
@@ -79,29 +47,11 @@ function AddClinic() {
                 setEmail('');
                 setPermit('');
                 setVerified('');
-                //setError_list([]);
-                /*setClinic({
-                    username: '',
-                    password: '',
-                    registration_number: '',
-                    owner_name: '',
-                    clinic_name: '',
-                    phone_number: '',
-                    address: '',
-                    email: '',
-                    permit: '',
-                    verified: '',
-                    error_list: [],
-                });*/
                 history.push('/AdminTable');
             }
             else if (res.data.status === 422){
                 alert('Error')
             }
-            /*else if(res.data.status === 422)
-            {
-                setClinic({...clinicInput, error_list: res.data.validate_err });
-            }*/
         });
     }
 
@@ -113,9 +63,7 @@ function AddClinic() {
                     <div className="col-md-6">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Add Clinic 
-                                    <Link to={'/AdminTable'} className="btn btn-danger btn-sm float-end"> BACK</Link>
-                                </h4>
+                                <h4>Register Clinic</h4>
                             </div>
                             <div className="card-body">
                                 
@@ -165,18 +113,6 @@ function AddClinic() {
                                         <input type="file" name="permit" onChange={(e) => setPermit(e.target.files[0])} className="form-control" />
                                         {/*<span className="text-danger">{clinicInput.error_list.permit}</span>*/}
                                     </div>
-                                    {/*<div className="form-group mb-3">
-                                        <label>Verified</label>
-                                        <input type="text" name="verified" onChange={(e) => setVerified(e.target.value)} className="form-control" />
-                                        {<span className="text-danger">{clinicInput.error_list.verified}</span>}
-                                    </div>*/}
-                                    <div className="form-group mb-3">
-                                        <label>Verified</label>
-                                        <select type="text" id="verified" name="verified" onChange={(e) => setVerified(e.target.value)} className="form-control">
-                                            <option value = "false">false</option>
-                                            <option value = "true">true</option>
-                                        </select>
-                                    </div>
 
                                     <div className="form-group mb-3">
                                         <button type="submit" className="btn btn-primary">Save Clinic</button>
@@ -194,4 +130,4 @@ function AddClinic() {
 
 }
 
-export default AddClinic;
+export default ClinicRegister;

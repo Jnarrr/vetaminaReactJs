@@ -1,16 +1,16 @@
 import React , {useState}from 'react';
 import {useHistory, Link} from 'react-router-dom';
 
-const VetLogin = () =>
+const ClinicLogin = () =>
 {
-    const [email, setEmail]=useState("");
+    const [username, setUsername]=useState("");
     const [password, setPassword]=useState("");
     const history = useHistory();
 
     async function login()
     {
-        let item={email,password};
-        let result = await fetch("http://localhost:8000/api/vetlogin",{
+        let item={username,password};
+        let result = await fetch("http://localhost:8000/api/cliniclogin",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -22,9 +22,12 @@ const VetLogin = () =>
         result = await result.json();
         localStorage.setItem("user-info",JSON.stringify(result));
         if("error" in result){
-          alert("error message");
-        }else{
-          history.push("/dashboard");
+            alert("Email or Password is not matched");
+        }else if ("notVerified" in result){
+            alert("User is not yet Verified");
+        }
+        else{
+            history.push("/dashboard");
         }
     }
     return(
@@ -33,11 +36,11 @@ const VetLogin = () =>
             <div className="col-sm-6 offset-sm-3">
                 <h1>Login</h1>
                 <p>Login to continue</p>
-                <input type ="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} className="form-control"/><br/>
+                <input type ="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} className="form-control"/><br/>
                 <input type ="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}className="form-control"/><br/>
 
                 <button onClick={login}className="btn btn-primary">Login</button>
-                <p>Don't have account? <Link to ="/VetRegister">Register here</Link></p>
+                <p>Don't have account? <Link to ="/ClinicRegister">Register here</Link></p>
             </div>
             
 
@@ -45,4 +48,4 @@ const VetLogin = () =>
     )
 }
 
-export default VetLogin;
+export default ClinicLogin;

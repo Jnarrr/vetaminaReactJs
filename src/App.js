@@ -27,6 +27,8 @@ import axios from 'axios';
 import Dashboard from './pages/Dashboard';
 import AdminLogin from './pages/AdminLogin';
 import AdminTable from './pages/AdminTable';
+import ClinicLogin from './pages/ClinicLogin';
+import ClinicRegister from './pages/ClinicRegister';
 
 
 
@@ -64,6 +66,9 @@ function App() {
 
             <Route path="/VetRegister" component={VetSignup} />
             <Route path="/VetLogin" component={VetLogin} />
+
+            <Route path="/ClinicLogin" component={ClinicLogin} />
+            <Route path="/ClinicRegister" component={ClinicRegister} />
             <Route path="/Appointment" component={ViewAppointment} />
 
           </Switch>

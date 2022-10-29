@@ -40,11 +40,16 @@ function EditClinic(props) {
         const clinic_id = props.match.params.id;
         // const data = clinicInput;
         const data = {
-            name: clinicInput.name,
+            username: clinicInput.username,
+            password: clinicInput.password,
+            registration_number: clinicInput.registration_number,
+            owner_name: clinicInput.owner_name,
+            clinic_name: clinicInput.clinic_name,
+            phone_number: clinicInput.phone_number,
             address: clinicInput.address,
             email: clinicInput.email,
-            phone: clinicInput.phone,
-            services: clinicInput.services,
+            permit: clinicInput.permit,
+            verified: clinicInput.verified
         }
 
         axios.put(`/api/update-clinic/${clinic_id}`, data).then(res=>{
@@ -52,11 +57,11 @@ function EditClinic(props) {
             {
                 swal("Success",res.data.message,"success");
                 setError([]);
-                history.push('/clinics');
+                history.push('/AdminTable');
             }
             else if(res.data.status === 422)
             {
-                swal("All fields are mandetory","","error");
+                swal("All fields are mandatory","","error");
                 setError(res.data.validationErrors);
             }
             else if(res.data.status === 404)
@@ -86,30 +91,57 @@ function EditClinic(props) {
                             <div className="card-body">
                                 
                                 <form onSubmit={updateClinic} >
-                                    <div className="form-group mb-3">
-                                        <label>Clinic Name</label>
-                                        <input type="text" name="name" onChange={handleInput} value={clinicInput.name} className="form-control" />
-                                        <span className="text-danger">{errorInput.name}</span>
+                                <div className="form-group mb-3">
+                                        <label>Username</label>
+                                        <input type="text" name="username" onChange={handleInput} value={clinicInput.username} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.username}</span>*/}
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label>Clinic address</label>
-                                        <input type="text" name="address" onChange={handleInput} value={clinicInput.address}  className="form-control" />
-                                        <span className="text-danger">{errorInput.address}</span>
+                                        <label>Password</label>
+                                        <input type="password" name="password" onChange={handleInput} value={clinicInput.password} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.password}</span>*/}
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label>Registration Number</label>
+                                        <input type="text" name="registration_number" onChange={handleInput} value={clinicInput.registration_number} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.registration_number}</span>*/}
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label>Owner Name</label>
+                                        <input type="text" name="owner_name" onChange={handleInput} value={clinicInput.owner_name} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.owner_name}</span>*/}
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label>Clinic Name</label>
+                                        <input type="text" name="clinic_name" onChange={handleInput} value={clinicInput.clinic_name} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.clinic_name}</span>*/}
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label>Phone Number</label>
+                                        <input type="text" name="phone_number" onChange={handleInput} value={clinicInput.phone_number} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.phone_number}</span>*/}
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <label>Clinic Address</label>
+                                        <input type="text" name="address" onChange={handleInput} value={clinicInput.address} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.address}</span>*/}
                                     </div>
                                     <div className="form-group mb-3">
                                         <label>Clinic Email</label>
-                                        <input type="text" name="email" onChange={handleInput} value={clinicInput.email}  className="form-control" />
-                                        <span className="text-danger">{errorInput.email}</span>
+                                        <input type="text" name="email" onChange={handleInput} value={clinicInput.email} className="form-control" />
+                                        {/*<span className="text-danger">{clinicInput.error_list.email}</span>*/}
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label>Clinic Phone</label>
-                                        <input type="text" name="phone" onChange={handleInput} value={clinicInput.phone}  className="form-control" />
-                                        <span className="text-danger">{errorInput.phone}</span>
+                                        <label>Permit</label> <br/>
+                                        <img src={ "http://localhost:8000/" + clinicInput.permit } className="img-fluid img-bordered" width="200px" alt='alternative'/>
+                                        {/*<span className="text-danger">{clinicInput.error_list.permit}</span>*/}
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label>Services</label>
-                                        <input type="text" name="services" onChange={handleInput} value={clinicInput.services}  className="form-control" />
-                                        <span className="text-danger">{errorInput.services}</span>
+                                        <label>Verified</label>
+                                        <select type="text" id="verified" name="verified" onChange={handleInput} value={clinicInput.verified} className="form-control">
+                                            <option value = "false">false</option>
+                                            <option value = "true">true</option>
+                                        </select>
                                     </div>
                                     <div className="form-group mb-3">
                                         <button type="submit" id="updatebtn" className="btn btn-primary">Update Clinic</button>

@@ -5,9 +5,9 @@ function Welcome() {
     return (
       <div>
         <h1>Welcome</h1>
-        <Link to="/VetLogin">Login</Link>
+        <Link to="/ClinicLogin">Login</Link>
         <br></br>
-        <Link to="/VetRegister">Register</Link>
+        <Link to="/ClinicRegister">Register</Link>
         <br></br>
         <p><Link to ="/AdminLogin">Admin Login</Link></p>
       </div>
