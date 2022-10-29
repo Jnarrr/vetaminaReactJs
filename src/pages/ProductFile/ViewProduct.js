@@ -8,10 +8,11 @@ function ViewProduct() {
 
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
+    let user = JSON.parse(localStorage.getItem('user-info'))
 
     useEffect(() => {
 
-        axios.get(`/api/products`).then(res=>{
+        axios.get(`/api/products/${user.id}`).then(res=>{
             if(res.status === 200)
             {
                 setProducts(res.data.products)
@@ -19,7 +20,7 @@ function ViewProduct() {
             }
         });
 
-    }, []);
+    }, [user.id]);
 
     const deleteProduct = (e, id) => {
         e.preventDefault();
@@ -53,7 +54,6 @@ function ViewProduct() {
             return (
                 
                 <tr key={index}>
-                    <td>{item.id}</td>
                     <td>{item.product_name}</td>
                     <td>{item.product_price}</td>
                     <td>{item.product_description}</td>
@@ -87,7 +87,6 @@ function ViewProduct() {
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Description</th>

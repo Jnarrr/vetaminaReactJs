@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import Navbar from './Navbar';
@@ -10,6 +10,13 @@ function Dashboard() {
     const [products, setProducts] = useState([]);
     const [services, setServices] = useState([]);
     const [employees, setEmployees] = useState([]);
+    const history = useHistory();
+
+    function logout()
+    {
+        localStorage.clear();
+        history.push("/ClinicLogin");
+    }
 
     useEffect(() => {
 
@@ -269,6 +276,8 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
+
+            <button onClick={logout} >Log Out</button>
             
         </div>
         </>

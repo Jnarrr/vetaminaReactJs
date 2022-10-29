@@ -5,9 +5,13 @@ import swal from 'sweetalert';
 import Navbar from '../Navbar';
 
 function AddProduct() {
-
+    
+    let user = JSON.parse(localStorage.getItem('user-info'))
+    let clinicID = user.id;
+    
     const history = useHistory();
     const [productInput, setProduct] = useState({
+        clinic_id: clinicID,
         product_name: '',
         product_price: '',
         product_description: '',
@@ -23,6 +27,7 @@ function AddProduct() {
         e.preventDefault();
         
         const data = {
+            clinic_id:productInput.clinic_id,
             product_name:productInput.product_name,
             product_price:productInput.product_price,
             product_description:productInput.product_description,
@@ -34,6 +39,7 @@ function AddProduct() {
             {
                 swal("Success!",res.data.message,"success");
                 setProduct({
+                    clinic_id: '',
                     product_name: '',
                     product_price: '',
                     product_description: '',
