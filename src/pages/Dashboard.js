@@ -11,6 +11,7 @@ function Dashboard() {
     const [services, setServices] = useState([]);
     const [employees, setEmployees] = useState([]);
     const history = useHistory();
+    let user = JSON.parse(localStorage.getItem('user-info'))
 
     function logout()
     {
@@ -20,7 +21,7 @@ function Dashboard() {
 
     useEffect(() => {
 
-        axios.get(`/api/products`).then(res=>{
+        axios.get(`/api/products/${user.id}`).then(res=>{
             if(res.status === 200)
             {
                 setProducts(res.data.products)

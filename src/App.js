@@ -29,6 +29,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminTable from './pages/AdminTable';
 import ClinicLogin from './pages/ClinicLogin';
 import ClinicRegister from './pages/ClinicRegister';
+import ViewVet from './pages/VetFile/ViewVet';
 
 
 
@@ -47,6 +48,8 @@ function App() {
             <Route path="/clinics" component={ViewClinic} />
             <Route path="/add-clinics" component={AddClinic} />
             <Route path="/edit-clinic/:id" component={EditClinic} />
+
+            <Route path="/veterinaries" component={ViewVet} />
 
             <Route path="/employees" component={ViewEmployee} />
             <Route path="/add-employee" component={AddEmployee} />
