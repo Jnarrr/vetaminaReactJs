@@ -30,6 +30,8 @@ import AdminTable from './pages/AdminTable';
 import ClinicLogin from './pages/ClinicLogin';
 import ClinicRegister from './pages/ClinicRegister';
 import ViewVet from './pages/VetFile/ViewVet';
+import AddVet from './pages/VetFile/AddVet';
+import EditVet from './pages/VetFile/EditVet';
 
 
 
@@ -50,6 +52,8 @@ function App() {
             <Route path="/edit-clinic/:id" component={EditClinic} />
 
             <Route path="/veterinaries" component={ViewVet} />
+            <Route path="/add-vet" component={AddVet} />
+            <Route path="/edit-vet/:id" component={EditVet} />
 
             <Route path="/employees" component={ViewEmployee} />
             <Route path="/add-employee" component={AddEmployee} />
