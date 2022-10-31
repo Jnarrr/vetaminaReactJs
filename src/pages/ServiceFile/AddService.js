@@ -6,8 +6,12 @@ import Navbar from '../Navbar';
 
 function AddService() {
 
+    let user = JSON.parse(localStorage.getItem('user-info'))
+    let clinicID = user.id;
+
     const history = useHistory();
     const [serviceInput, setService] = useState({
+        clinic_id: clinicID,
         service_name: '',
         service_price: '',
         service_description: '',
@@ -23,6 +27,7 @@ function AddService() {
         e.preventDefault();
         
         const data = {
+            clinic_id:serviceInput.clinic_id,
             service_name:serviceInput.service_name,
             service_price:serviceInput.service_price,
             service_description:serviceInput.service_description,
@@ -34,12 +39,13 @@ function AddService() {
             {
                 swal("Success!",res.data.message,"success");
                 setService({
+                    clinic_id: '',
                     service_name: '',
                     service_price: '',
                     service_description: '',
                     error_list: [],
                 });
-                history.push('/services');
+                history.push('/dashboard');
             }
             else if(res.data.status === 422)
             {

@@ -50,7 +50,7 @@ function EditService(props) {
             {
                 swal("Success",res.data.message,"success");
                 setError([]);
-                history.push('/services');
+                history.push('/dashboard');
             }
             else if(res.data.status === 422)
             {
@@ -60,7 +60,7 @@ function EditService(props) {
             else if(res.data.status === 404)
             {
                 swal("Error",res.data.message,"error");
-                history.push('/clinics');
+                history.push('/dashboard');
             }
         });
     }

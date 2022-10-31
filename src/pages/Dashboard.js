@@ -30,7 +30,7 @@ function Dashboard() {
             }
         });
 
-        axios.get(`/api/services`).then(res=>{
+        axios.get(`/api/services/${user.id}`).then(res=>{
             if(res.status === 200)
             {
                 setServices(res.data.services)
@@ -38,7 +38,7 @@ function Dashboard() {
             }
         });
 
-        axios.get(`/api/employees`).then(res=>{
+        axios.get(`/api/employees/${user.id}`).then(res=>{
             if(res.status === 200)
             {
                 setEmployees(res.data.employees)
@@ -46,7 +46,7 @@ function Dashboard() {
             }
         });
 
-        axios.get(`/api/veterinaries`).then(res=>{
+        axios.get(`/api/veterinaries/${user.id}`).then(res=>{
             if(res.status === 200)
             {
                 setVeterinaries(res.data.veterinaries)
@@ -147,7 +147,6 @@ function Dashboard() {
             return (
                 
                 <tr key={index}>
-                    <td>{item.id}</td>
                     <td>{item.product_name}</td>
                     <td>{item.product_price}</td>
                     <td>{item.product_description}</td>
@@ -167,7 +166,6 @@ function Dashboard() {
             return (
                 
                 <tr key={index}>
-                    <td>{item.id}</td>
                     <td>{item.service_name}</td>
                     <td>{item.service_price}</td>
                     <td>{item.service_description}</td>
@@ -187,7 +185,6 @@ function Dashboard() {
             return (
                 
                 <tr key={index}>
-                    <td>{item.id}</td>
                     <td>{item.employee_name}</td>
                     <td>{item.employee_email}</td>
                     <td>{item.employee_phone_number}</td>
@@ -207,7 +204,6 @@ function Dashboard() {
             return (
                 
                 <tr key={index}>
-                    <td>{item.id}</td>
                     <td>{item.vet_name}</td>
                     <td>{item.vet_email}</td>
                     <td>{item.vet_phone_number}</td>
@@ -227,7 +223,9 @@ function Dashboard() {
         <>
         <Navbar />
         <div>
+            
             <div className="container">
+                <h2>Hello {user.owner_name}</h2>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card">
@@ -241,7 +239,6 @@ function Dashboard() {
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Description</th>
@@ -274,7 +271,6 @@ function Dashboard() {
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Description</th>
@@ -307,7 +303,6 @@ function Dashboard() {
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone Number</th>
@@ -340,7 +335,6 @@ function Dashboard() {
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone Number</th>

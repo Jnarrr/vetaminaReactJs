@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -8,6 +8,13 @@ function AdminTable() {
     const [loading, setLoading] = useState(true);
     const [clinics, setClinics] = useState([]);
     const [clinics2, setClinics2] = useState([]);
+    const history = useHistory();
+
+    function logout()
+    {
+        localStorage.clear();
+        history.push("/AdminLogin");
+    }
 
     useEffect(() => {
 
@@ -190,6 +197,8 @@ function AdminTable() {
                     </div>
                 </div>
             </div>
+
+            <button onClick={logout} >Log Out</button>
         </div>
         </>
     );

@@ -6,8 +6,12 @@ import Navbar from '../Navbar';
 
 function AddVet() {
 
+    let user = JSON.parse(localStorage.getItem('user-info'))
+    let clinicID = user.id;
+
     const history = useHistory();
     const [vetInput, setEmployee] = useState({
+        clinic_id: clinicID,
         vet_name: '',
         vet_email: '',
         vet_phone_number: '',
@@ -24,6 +28,7 @@ function AddVet() {
         e.preventDefault();
         
         const data = {
+            clinic_id:vetInput.clinic_id,
             vet_name:vetInput.vet_name,
             vet_email:vetInput.vet_email,
             vet_phone_number:vetInput.vet_phone_number,
@@ -36,6 +41,7 @@ function AddVet() {
             {
                 swal("Success!",res.data.message,"success");
                 setEmployee({
+                    clinic_id: '',
                     vet_name: '',
                     vet_email: '',
                     vet_phone_number: '',

@@ -6,8 +6,12 @@ import Navbar from '../Navbar';
 
 function AddEmployee() {
 
+    let user = JSON.parse(localStorage.getItem('user-info'))
+    let clinicID = user.id;
+
     const history = useHistory();
     const [employeeInput, setEmployee] = useState({
+        clinic_id: clinicID,
         employee_name: '',
         employee_email: '',
         employee_phone_number: '',
@@ -24,6 +28,7 @@ function AddEmployee() {
         e.preventDefault();
         
         const data = {
+            clinic_id:employeeInput.clinic_id,
             employee_name:employeeInput.employee_name,
             employee_email:employeeInput.employee_email,
             employee_phone_number:employeeInput.employee_phone_number,
@@ -36,13 +41,14 @@ function AddEmployee() {
             {
                 swal("Success!",res.data.message,"success");
                 setEmployee({
+                    clinic_id: '',
                     employee_name: '',
                     employee_email: '',
                     employee_phone_number: '',
                     employee_password: '',
                     error_list: [],
                 });
-                history.push('/employees');
+                history.push('/dashboard');
             }
             else if(res.data.status === 422)
             {
