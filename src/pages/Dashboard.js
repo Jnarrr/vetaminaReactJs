@@ -17,7 +17,7 @@ function Dashboard() {
     function logout()
     {
         localStorage.clear();
-        history.push("/ClinicLogin");
+        history.push("/welcome");
     }
 
     useEffect(() => {

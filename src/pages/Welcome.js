@@ -5,11 +5,11 @@ function Welcome() {
     return (
       <div>
         <h1>Welcome</h1>
-        <Link to="/ClinicLogin">Login</Link>
+        <Link to="/ClinicLogin">Clinic Login</Link>
         <br></br>
-        <Link to="/ClinicRegister">Register</Link>
+        <Link to ="/AdminLogin">Admin Login</Link>
         <br></br>
-        <p><Link to ="/AdminLogin">Admin Login</Link></p>
+        <Link to ="/EmployeeLogin">Employee Login</Link>
       </div>
     );
   }

@@ -32,6 +32,8 @@ import ClinicRegister from './pages/ClinicRegister';
 import ViewVet from './pages/VetFile/ViewVet';
 import AddVet from './pages/VetFile/AddVet';
 import EditVet from './pages/VetFile/EditVet';
+import EmployeeLogin from './pages/EmployeeLogin';
+import EmployeeDashboard from './pages/EmployeeDashboard';
 
 
 
@@ -46,6 +48,7 @@ function App() {
 
             <Route path="/welcome" component={Welcome} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/employeedashboard" component={EmployeeDashboard} />
 
             <Route path="/clinics" component={ViewClinic} />
             <Route path="/add-clinics" component={AddClinic} />
@@ -74,6 +77,7 @@ function App() {
             <Route path="/VetRegister" component={VetSignup} />
             <Route path="/VetLogin" component={VetLogin} />
 
+            <Route path="/EmployeeLogin" component={EmployeeLogin} />
             <Route path="/ClinicLogin" component={ClinicLogin} />
             <Route path="/ClinicRegister" component={ClinicRegister} />
             <Route path="/Appointment" component={ViewAppointment} />

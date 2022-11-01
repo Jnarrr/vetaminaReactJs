@@ -1,16 +1,16 @@
 import React , {useState}from 'react';
 import {useHistory, Link} from 'react-router-dom';
 
-const ClinicLogin = () =>
+const EmployeeLogin = () =>
 {
-    const [username, setUsername]=useState("");
-    const [password, setPassword]=useState("");
+    const [employee_email, setEmail]=useState("");
+    const [employee_password, setPassword]=useState("");
     const history = useHistory();
 
     async function login()
     {
-        let item={username,password};
-        let result = await fetch("http://localhost:8000/api/cliniclogin",{
+        let item={employee_email,employee_password};
+        let result = await fetch("http://localhost:8000/api/employeelogin",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -23,24 +23,22 @@ const ClinicLogin = () =>
         localStorage.setItem("user-info",JSON.stringify(result));
         if("error" in result){
             alert("Username or Password is not matched");
-        }else if ("notVerified" in result){
-            alert("User is not yet Verified");
         }
         else{
-            history.push("/dashboard");
+            history.push("/employeedashboard");
         }
     }
     return(
         <div>
             
             <div className="col-sm-6 offset-sm-3">
-                <h1>Clinic Login</h1>
+                <h1>Employee Login</h1>
                 <p>Login to continue</p>
-                <input type ="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} className="form-control"/><br/>
+                <input type ="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} className="form-control"/><br/>
                 <input type ="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}className="form-control"/><br/>
 
                 <button onClick={login}className="btn btn-primary">Login</button>
-                <p>Don't have account? <Link to ="/ClinicRegister">Register here</Link></p>
+                <p><Link to ="/welcome">Back</Link></p>
             </div>
             
 
@@ -48,4 +46,4 @@ const ClinicLogin = () =>
     )
 }
 
-export default ClinicLogin;
+export default EmployeeLogin;

@@ -23,7 +23,7 @@ function EditEmployee(props) {
             else if(res.data.status === 404)
             {
                 swal("Error",res.data.message,"error");
-                history.push('/employees');
+                history.push('/dashboard');
             }
         });
 
@@ -51,7 +51,7 @@ function EditEmployee(props) {
             {
                 swal("Success",res.data.message,"success");
                 setError([]);
-                history.push('/employees');
+                history.push('/dashboard');
             }
             else if(res.data.status === 422)
             {
@@ -61,7 +61,7 @@ function EditEmployee(props) {
             else if(res.data.status === 404)
             {
                 swal("Error",res.data.message,"error");
-                history.push('/clinics');
+                history.push('/dashboard');
             }
         });
     }
@@ -79,7 +79,7 @@ function EditEmployee(props) {
                         <div className="card">
                             <div className="card-header">
                                 <h4>Edit Employees 
-                                    <Link to={'/employees'} className="btn btn-danger btn-sm float-end"> BACK</Link>
+                                    <Link to={'/dashboard'} className="btn btn-danger btn-sm float-end"> BACK</Link>
                                 </h4>
                             </div>
                             <div className="card-body">
