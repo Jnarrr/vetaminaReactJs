@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -50,7 +50,7 @@ function EditProduct(props) {
             {
                 swal("Success",res.data.message,"success");
                 setError([]);
-                history.push('/products');
+                history.goBack()
             }
             else if(res.data.status === 422)
             {
@@ -60,7 +60,7 @@ function EditProduct(props) {
             else if(res.data.status === 404)
             {
                 swal("Error",res.data.message,"error");
-                history.push('/clinics');
+                history.goBack()
             }
         });
     }
@@ -78,7 +78,7 @@ function EditProduct(props) {
                         <div className="card">
                             <div className="card-header">
                                 <h4>Edit Products 
-                                    <Link to={'/products'} className="btn btn-danger btn-sm float-end"> BACK</Link>
+                                    <button className='btn btn-danger btn-sm float-end' onClick={() => history.goBack()}>Back</button>
                                 </h4>
                             </div>
                             <div className="card-body">

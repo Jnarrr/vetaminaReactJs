@@ -10,6 +10,8 @@ function Welcome() {
         <Link to ="/AdminLogin">Admin Login</Link>
         <br></br>
         <Link to ="/EmployeeLogin">Employee Login</Link>
+        <br></br>
+        <Link to ="/VetLogin">Veterinary Login</Link>
       </div>
     );
   }

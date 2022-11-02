@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -44,7 +44,7 @@ function AddProduct() {
                     product_description: '',
                     error_list: [],
                 });
-                history.push('/products');
+                history.push('/dashboard');
             }
             else if(res.data.status === 422)
             {
@@ -62,7 +62,7 @@ function AddProduct() {
                         <div className="card">
                             <div className="card-header">
                                 <h4>Add Product 
-                                    <Link to={'/products'} className="btn btn-danger btn-sm float-end"> BACK</Link>
+                                    <button className='btn btn-danger btn-sm float-end' onClick={() => history.goBack()}>Back</button>
                                 </h4>
                             </div>
                             <div className="card-body">

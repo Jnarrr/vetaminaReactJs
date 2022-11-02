@@ -17,7 +17,6 @@ import ViewEmployee from './pages/EmployeeFile/ViewEmployee';
 import AddEmployee from './pages/EmployeeFile/AddEmployee';
 import EditEmployee from './pages/EmployeeFile/EditEmployee';
 
-import VetSignup from './pages/VetRegister';
 import VetLogin from './pages/VetLogin';
 import ViewAppointment from './pages/ViewAppointment';
 import Welcome from './pages/Welcome';
@@ -34,6 +33,7 @@ import AddVet from './pages/VetFile/AddVet';
 import EditVet from './pages/VetFile/EditVet';
 import EmployeeLogin from './pages/EmployeeLogin';
 import EmployeeDashboard from './pages/EmployeeDashboard';
+import VetDashboard from './pages/VetDashboard';
 
 
 
@@ -72,10 +72,9 @@ function App() {
 
             <Route path="/AdminLogin" component={AdminLogin} />
             <Route path="/AdminTable" component={AdminTable} />
-            {/*<Route path="/edit-table/:id" component={EditTable} />*/}
 
-            <Route path="/VetRegister" component={VetSignup} />
             <Route path="/VetLogin" component={VetLogin} />
+            <Route path="/vetdashboard" component={VetDashboard} />
 
             <Route path="/EmployeeLogin" component={EmployeeLogin} />
             <Route path="/ClinicLogin" component={ClinicLogin} />

@@ -3,13 +3,13 @@ import {useHistory, Link} from 'react-router-dom';
 
 const VetLogin = () =>
 {
-    const [email, setEmail]=useState("");
-    const [password, setPassword]=useState("");
+    const [vet_email, setEmail]=useState("");
+    const [vet_password, setPassword]=useState("");
     const history = useHistory();
 
     async function login()
     {
-        let item={email,password};
+        let item={vet_email,vet_password};
         let result = await fetch("http://localhost:8000/api/vetlogin",{
             method: "POST",
             headers: {
@@ -24,7 +24,7 @@ const VetLogin = () =>
         if("error" in result){
           alert("error message");
         }else{
-          history.push("/dashboard");
+          history.push("/vetdashboard");
         }
     }
     return(
@@ -37,7 +37,7 @@ const VetLogin = () =>
                 <input type ="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}className="form-control"/><br/>
 
                 <button onClick={login}className="btn btn-primary">Login</button>
-                <p>Don't have account? <Link to ="/VetRegister">Register here</Link></p>
+                <p>Go <Link to ="/welcome">Back</Link></p>
             </div>
             
 
