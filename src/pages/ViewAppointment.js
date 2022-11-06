@@ -5,14 +5,17 @@ import axios from 'axios';
 
 class ViewAppointment extends Component
 {
+    
     state = {
         appointments: [],
         loading: true,
     }
+    
     async componentDidMount(){
-        const res = await axios.get('http://localhost:8000/api/appointments');
+        let user = JSON.parse(localStorage.getItem('user-info'));
+        const res = await axios.get(`http://localhost:8000/api/ClinicAppointments/${user.id}`);
         
-        if (res.data.status === true)
+        if (res.data.status === 200)
         {
             this.setState({
                 appointments: res.data.appointments,
