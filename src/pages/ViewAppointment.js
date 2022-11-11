@@ -1,60 +1,84 @@
-import React, {useState, useEffect, Component} from 'react';
-import {Link, useHistory} from 'react-router-dom';
-
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert';
 
-class ViewAppointment extends Component
-{
-    
-    state = {
-        appointments: [],
-        loading: true,
-    }
-    
-    async componentDidMount(){
+function ViewAppointment() {
+
+    const [loading, setLoading] = useState(true);
+    const [appointments, setAppointments] = useState([]);
+
+    useEffect(() => {
+
         let user = JSON.parse(localStorage.getItem('user-info'));
-        const res = await axios.get(`http://localhost:8000/api/ClinicAppointments/${user.id}`);
+        axios.get(`/api/ClinicAppointments/${user.id}`).then(res=>{
+            if(res.status === 200)
+            {
+                setAppointments(res.data.appointments)
+                setLoading(false);
+            }
+        });
+
+    }, []);
+
+    const deleteAppointment = (e, id) => {
+        e.preventDefault();
         
-        if (res.data.status === 200)
-        {
-            this.setState({
-                appointments: res.data.appointments,
-                loading: false,
-            });
-        }
+        const thisClicked = e.currentTarget;
+        thisClicked.innerText = "Deleting";
+
+        axios.delete(`/api/delete-appointment/${id}`).then(res=>{
+            if(res.data.status === 200)
+            {
+                swal("Deleted!",res.data.message,"success");
+                thisClicked.closest("tr").remove();
+            }
+            else if(res.data.status === 404)
+            {
+                swal("Error",res.data.message,"error");
+                thisClicked.innerText = "Delete";
+            }
+        });
     }
 
-    render(){
+    if(loading)
+    {
+        return <h4>Loading Vet Data...</h4>
+    }
+    else
+    {
+        var appointments_HTMLTABLE = "";
+       
+        appointments_HTMLTABLE = appointments.map( (item, index) => {
+            return (
+                
+                <tr key={index}>
+                    <td>{item.id}</td>
+                    <td>{item.procedure}</td>
+                    <td>{item.date}</td>
+                    <td>{item.time}</td>
+                    <td>{item.pet}</td>
+                    <td>
+                        <Link to={`edit-appointment/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                    </td>
+                    <td>
+                        <button type="button" onClick={(e) => deleteAppointment(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                </tr>
+            );
+        });
 
-        var appointments_table = "";
-        if (this.state.loading)
-        {
-            appointments_table = <tr><td colSpan="6"> <h2>Loading...</h2> </td></tr>;
-        }
-        else 
-        {
-            appointments_table = 
-            this.state.appointments.map( (item) => {
-                return(
-                    <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.procedure}</td>
-                        <td>{item.date}</td>
-                        <td>{item.time}</td>
-                        <td>{item.pet}</td>
-                    </tr>
-                );
-            } )
-        }
+    }
 
-        return(
-            <div>
+    return (
+        <>
+        <div>
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Appointments</h4>
+                                <h4>Appointments Data</h4>
                             </div>
                             <div className="card-body">
                                 
@@ -69,7 +93,7 @@ class ViewAppointment extends Component
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {appointments_table}
+                                        {appointments_HTMLTABLE}
                                     </tbody>
                                 </table>
 
@@ -79,8 +103,9 @@ class ViewAppointment extends Component
                 </div>
             </div>
         </div>
-        );
-    }
+        </>
+    );
+
 }
 
 export default ViewAppointment;
