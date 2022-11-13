@@ -31,13 +31,13 @@ const VetLogin = () =>
         <div>
             
             <div className="col-sm-6 offset-sm-3">
-                <h1>Login</h1>
+                <h1>Veterinary Login</h1>
                 <p>Login to continue</p>
                 <input type ="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} className="form-control"/><br/>
                 <input type ="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}className="form-control"/><br/>
 
                 <button onClick={login}className="btn btn-primary">Login</button>
-                <p>Go <Link to ="/welcome">Back</Link></p>
+                <p><Link to ="/welcome">Back</Link></p>
             </div>
             
 

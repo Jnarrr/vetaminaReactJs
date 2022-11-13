@@ -9,8 +9,8 @@ const AdminLogin = () =>
 
     function login()
     {
-        if((username !== 'admin') && (password !== 'adminpassword')){
-          alert("error message");
+        if((username !== 'admin') || (password !== 'adminpassword')){
+          alert("Username or Password is not matched");
         }else{
           history.push("/AdminTable");
         }

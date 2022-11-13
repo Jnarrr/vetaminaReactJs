@@ -27,7 +27,7 @@ function VetDashboard() {
             }
         });
 
-        axios.get(`http://localhost:8000/api/appointments`).then(res=>{
+        axios.get(`/api/ClinicAppointments/${user.clinic_id}`).then(res=>{
             if(res.status === 200)
             {
                 setAppointments(res.data.appointments)

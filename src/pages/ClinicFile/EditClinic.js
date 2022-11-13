@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -85,55 +85,15 @@ function EditClinic(props) {
                         <div className="card">
                             <div className="card-header">
                                 <h4>Edit Clinics 
-                                    <Link to={'/clinics'} className="btn btn-danger btn-sm float-end"> BACK</Link>
+                                    <button className='btn btn-danger btn-sm float-end' onClick={() => history.goBack()}>Back</button>
                                 </h4>
                             </div>
                             <div className="card-body">
                                 
                                 <form onSubmit={updateClinic} >
-                                <div className="form-group mb-3">
-                                        <label>Username</label>
-                                        <input type="text" name="username" onChange={handleInput} value={clinicInput.username} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.username}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Password</label>
-                                        <input type="password" name="password" onChange={handleInput} value={clinicInput.password} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.password}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Registration Number</label>
-                                        <input type="text" name="registration_number" onChange={handleInput} value={clinicInput.registration_number} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.registration_number}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Owner Name</label>
-                                        <input type="text" name="owner_name" onChange={handleInput} value={clinicInput.owner_name} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.owner_name}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Clinic Name</label>
-                                        <input type="text" name="clinic_name" onChange={handleInput} value={clinicInput.clinic_name} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.clinic_name}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Phone Number</label>
-                                        <input type="text" name="phone_number" onChange={handleInput} value={clinicInput.phone_number} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.phone_number}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Clinic Address</label>
-                                        <input type="text" name="address" onChange={handleInput} value={clinicInput.address} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.address}</span>*/}
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label>Clinic Email</label>
-                                        <input type="text" name="email" onChange={handleInput} value={clinicInput.email} className="form-control" />
-                                        {/*<span className="text-danger">{clinicInput.error_list.email}</span>*/}
-                                    </div>
                                     <div className="form-group mb-3">
                                         <label>Permit</label> <br/>
-                                        <img src={ "http://localhost:8000/" + clinicInput.permit } className="img-fluid img-bordered" width="200px" alt='alternative'/>
+                                        <img src={ "http://localhost:8000/" + clinicInput.permit } className="img-fluid img-bordered" width="400px" alt='alternative'/>
                                         {/*<span className="text-danger">{clinicInput.error_list.permit}</span>*/}
                                     </div>
                                     <div className="form-group mb-3">

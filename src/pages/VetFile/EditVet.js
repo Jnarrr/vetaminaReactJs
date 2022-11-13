@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -79,7 +79,7 @@ function EditVet(props) {
                         <div className="card">
                             <div className="card-header">
                                 <h4>Edit Vets 
-                                    <Link to={'/vets'} className="btn btn-danger btn-sm float-end"> BACK</Link>
+                                    <button className='btn btn-danger btn-sm float-end' onClick={() => history.goBack()}>Back</button>
                                 </h4>
                             </div>
                             <div className="card-body">
@@ -102,7 +102,7 @@ function EditVet(props) {
                                     </div>
                                     <div className="form-group mb-3">
                                         <label>Vet Password</label>
-                                        <input type="text" name="vet_password" onChange={handleInput} value={vetInput.vet_password}  className="form-control" />
+                                        <input type="password" name="vet_password" onChange={handleInput} value={vetInput.vet_password}  className="form-control" />
                                         <span className="text-danger">{errorInput.vet_password}</span>
                                     </div>
                                     <div className="form-group mb-3">

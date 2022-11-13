@@ -41,6 +41,7 @@ const ClinicLogin = () =>
 
                 <button onClick={login}className="btn btn-primary">Login</button>
                 <p>Don't have account? <Link to ="/ClinicRegister">Register here</Link></p>
+                <p><Link to ="/welcome">Back</Link></p>
             </div>
             
 

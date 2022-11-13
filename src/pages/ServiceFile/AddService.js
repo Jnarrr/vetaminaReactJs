@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import Navbar from '../Navbar';
@@ -64,7 +64,7 @@ function AddService() {
                         <div className="card">
                             <div className="card-header">
                                 <h4>Add Service 
-                                    <Link to={'/services'} className="btn btn-danger btn-sm float-end"> BACK</Link>
+                                    <button className='btn btn-danger btn-sm float-end' onClick={() => history.goBack()}>Back</button>
                                 </h4>
                             </div>
                             <div className="card-body">
