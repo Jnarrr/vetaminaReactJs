@@ -8,6 +8,7 @@ function ViewAppointment() {
 
     const [loading, setLoading] = useState(true);
     const [appointments, setAppointments] = useState([]);
+    const [medicalrecords, setMedicalRecords] = useState([]);
 
     useEffect(() => {
 
@@ -20,6 +21,13 @@ function ViewAppointment() {
             }
         });
 
+        axios.get(`/api/medicalrecordAll`).then(res=>{
+            if(res.status === 200)
+            {
+                setMedicalRecords(res.data.medical_records)
+                setLoading(false);
+            }
+        });
     }, []);
 
     const deleteAppointment = (e, id) => {
@@ -69,6 +77,21 @@ function ViewAppointment() {
             );
         });
 
+        var medicalrecords_HTMLTABLE = "";
+       
+        medicalrecords_HTMLTABLE = medicalrecords.map( (item, index) => {
+            return (
+                
+                <tr key={index}>
+                    <td>{item.pet_id}</td>
+                    <td>{item.Date}</td>
+                    <td>{item.Weight}</td>
+                    <td>{item.Against_Manufacturer_LotNo}</td>
+                    <td>{item.vet_name}</td>
+                </tr>
+            );
+        });
+
     }
 
     return (
@@ -80,7 +103,7 @@ function ViewAppointment() {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Appointments Data</h4>
+                                <h4>Appointments</h4>
                             </div>
                             <div className="card-body">
                                 
@@ -104,6 +127,39 @@ function ViewAppointment() {
                     </div>
                 </div>
             </div>
+
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4>Medical Records
+                                <Link to={`add-medicalrecord`} className="btn btn-primary btn-sm float-end"> Add Medical Record </Link>
+                                </h4>
+                            </div>
+                            <div className="card-body">
+                                
+                                <table className="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Pet_ID</th>
+                                            <th>Date</th>
+                                            <th>Weight</th>
+                                            <th>Against_Manufacturer_LotNo</th>
+                                            <th>Vet Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {medicalrecords_HTMLTABLE}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         </>
     );

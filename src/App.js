@@ -35,6 +35,7 @@ import EmployeeLogin from './pages/EmployeeLogin';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import VetDashboard from './pages/VetDashboard';
 import EditAppointment from './pages/EditAppointment';
+import AddMedicalRecord from './pages/AddMedicalRecord';
 
 
 
@@ -81,6 +82,7 @@ function App() {
             <Route path="/ClinicLogin" component={ClinicLogin} />
             <Route path="/ClinicRegister" component={ClinicRegister} />
             <Route path="/appointment" component={ViewAppointment} />
+            <Route path="/add-medicalrecord" component={AddMedicalRecord} />
             <Route path="/edit-appointment/:id" component={EditAppointment} />
 
           </Switch>
