@@ -15,7 +15,7 @@ function AddClinic() {
     const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
     const [permit, setPermit] = useState('');
-    const [verified, setVerified] = useState('0');
+    const [verified, setVerified] = useState('false');
    // const [error_list, setError_list] = useState([]);
     /*const [clinicInput, setClinic] = useState({
         username: '',

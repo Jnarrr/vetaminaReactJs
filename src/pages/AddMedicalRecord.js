@@ -5,12 +5,10 @@ import swal from 'sweetalert';
 
 function AddMedicalRecord() {
     
-    /*let user = JSON.parse(localStorage.getItem('user-info'))
-    let clinicID = user.id;
     
     const history = useHistory();
-    const [productInput, setProduct] = useState({
-        clinic_id: clinicID,
+    const [medicalrecordInput, setMedicalRecord] = useState({
+        pet_id: '',
         product_name: '',
         product_price: '',
         product_description: '',
@@ -19,25 +17,25 @@ function AddMedicalRecord() {
 
     const handleInput = (e) => {
         e.persist();
-        setProduct({...productInput, [e.target.name]: e.target.value })
+        setMedicalRecord({...medicalrecordInput, [e.target.name]: e.target.value })
     }
 
-    const saveProduct = (e) => {
+    const saveMedicalRecord = (e) => {
         e.preventDefault();
         
         const data = {
-            clinic_id:productInput.clinic_id,
-            product_name:productInput.product_name,
-            product_price:productInput.product_price,
-            product_description:productInput.product_description,
+            clinic_id:medicalrecordInput.clinic_id,
+            product_name:medicalrecordInput.product_name,
+            product_price:medicalrecordInput.product_price,
+            product_description:medicalrecordInput.product_description,
         }
 
-        axios.post(`/api/add-product`, data).then(res => {
+        axios.post(`/api/add-medicalrecord`, data).then(res => {
 
             if(res.data.status === 200)
             {
                 swal("Success!",res.data.message,"success");
-                setProduct({
+                setMedicalRecord({
                     clinic_id: '',
                     product_name: '',
                     product_price: '',
@@ -48,7 +46,7 @@ function AddMedicalRecord() {
             }
             else if(res.data.status === 422)
             {
-                setProduct({...productInput, error_list: res.data.validate_err });
+                setMedicalRecord({...medicalrecordInput, error_list: res.data.validate_err });
             }
         });
     }
@@ -67,21 +65,21 @@ function AddMedicalRecord() {
                             </div>
                             <div className="card-body">
                                 
-                                <form onSubmit={saveProduct} >
+                                <form onSubmit={saveMedicalRecord} >
                                     <div className="form-group mb-3">
                                         <label>Product Name</label>
-                                        <input type="text" name="product_name" onChange={handleInput} value={productInput.product_name} className="form-control" />
-                                        <span className="text-danger">{productInput.error_list.product_name}</span>
+                                        <input type="text" name="product_name" onChange={handleInput} value={medicalrecordInput.product_name} className="form-control" />
+                                        <span className="text-danger">{medicalrecordInput.error_list.product_name}</span>
                                     </div>
                                     <div className="form-group mb-3">
                                         <label>Product Price</label>
-                                        <input type="text" name="product_price" onChange={handleInput} value={productInput.product_price}  className="form-control" />
-                                        <span className="text-danger">{productInput.error_list.product_price}</span>
+                                        <input type="text" name="product_price" onChange={handleInput} value={medicalrecordInput.product_price}  className="form-control" />
+                                        <span className="text-danger">{medicalrecordInput.error_list.product_price}</span>
                                     </div>
                                     <div className="form-group mb-3">
                                         <label>Product Description</label>
-                                        <input type="text" name="product_description" onChange={handleInput} value={productInput.product_description}  className="form-control" />
-                                        <span className="text-danger">{productInput.error_list.product_description}</span>
+                                        <input type="text" name="product_description" onChange={handleInput} value={medicalrecordInput.product_description}  className="form-control" />
+                                        <span className="text-danger">{medicalrecordInput.error_list.product_description}</span>
                                     </div>
 
                                     <div className="form-group mb-3">
@@ -96,7 +94,7 @@ function AddMedicalRecord() {
             </div>
         </div>
         </>
-    );*/
+    );
 
 }
 

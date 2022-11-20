@@ -9,6 +9,7 @@ function ViewAppointment() {
     const [loading, setLoading] = useState(true);
     const [appointments, setAppointments] = useState([]);
     const [medicalrecords, setMedicalRecords] = useState([]);
+    const [tablemedicalrecords, setTableMedicalRecords] = useState(null);
 
     useEffect(() => {
 
@@ -50,6 +51,31 @@ function ViewAppointment() {
         });
     }
 
+    async function search(key) {
+        console.warn(key)
+        let result = await fetch("http://localhost:8000/api/search/"+key);
+        console.log(result);
+        result = await result.json();
+    
+        var medicalrecords_HTMLTABLE = result.map((item, index) => {
+          return (
+            <tr key={index}>
+                <td>{item.pet_id}</td>
+                <td>{item.Date}</td>
+                <td>{item.Weight} kg</td>
+                <td>{item.Against_Manufacturer_LotNo}</td>
+                <td>{item.vet_name}</td>
+                <td>
+                <td>
+                    <Link to={`edit-medicalrecord/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                </td>
+              </td>
+            </tr>
+          );
+        });
+        setTableMedicalRecords(medicalrecords_HTMLTABLE)
+    }
+
     if(loading)
     {
         return <h4>Loading Vet Data...</h4>
@@ -67,6 +93,7 @@ function ViewAppointment() {
                     <td>{item.date}</td>
                     <td>{item.time}</td>
                     <td>{item.pet}</td>
+                    <td>{item.status}</td>
                     <td>
                         <Link to={`edit-appointment/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                     </td>
@@ -85,9 +112,10 @@ function ViewAppointment() {
                 <tr key={index}>
                     <td>{item.pet_id}</td>
                     <td>{item.Date}</td>
-                    <td>{item.Weight}</td>
+                    <td>{item.Weight} kg</td>
                     <td>{item.Against_Manufacturer_LotNo}</td>
                     <td>{item.vet_name}</td>
+                    
                 </tr>
             );
         });
@@ -115,6 +143,7 @@ function ViewAppointment() {
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Pet</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -135,6 +164,9 @@ function ViewAppointment() {
                             <div className="card-header">
                                 <h4>Medical Records
                                 <Link to={`add-medicalrecord`} className="btn btn-primary btn-sm float-end"> Add Medical Record </Link>
+                                <div className="col-sm offset-sm">
+                                    <input type='text' onChange={(e)=>search(e.target.value)} className="form-control" placeholder="Search Pet ID" />
+                                </div>
                                 </h4>
                             </div>
                             <div className="card-body">
@@ -150,7 +182,7 @@ function ViewAppointment() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {medicalrecords_HTMLTABLE}
+                                        {tablemedicalrecords}
                                     </tbody>
                                 </table>
 
