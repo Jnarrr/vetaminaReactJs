@@ -3,10 +3,11 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-function AddMedicalRecord() {
+function AddMedicalRecordVet() {
 
     let pet_id = global.key;
-    let vet_name = global.owner_name;
+    let user = JSON.parse(localStorage.getItem('user-info'))
+    let veterinary = user.vet_name;
     
     const history = useHistory();
     const [medicalrecordInput, setMedicalRecord] = useState({
@@ -14,7 +15,7 @@ function AddMedicalRecord() {
         Date: '',
         Weight: '',
         Against_Manufacturer_LotNo: '',
-        vet_name: vet_name,
+        vet_name: veterinary,
         error_list: [],
     });
 
@@ -31,7 +32,7 @@ function AddMedicalRecord() {
             Date:medicalrecordInput.Date,
             Weight:medicalrecordInput.Weight,
             Against_Manufacturer_LotNo:medicalrecordInput.Against_Manufacturer_LotNo,
-            vet_name:medicalrecordInput.vet_name,
+            vet_name:medicalrecordInput.veterinary,
         }
 
         axios.post(`/api/add-medicalrecord`, data).then(res => {
@@ -113,4 +114,4 @@ function AddMedicalRecord() {
 
 }
 
-export default AddMedicalRecord;
+export default AddMedicalRecordVet;

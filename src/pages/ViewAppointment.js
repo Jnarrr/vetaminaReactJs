@@ -51,11 +51,32 @@ function ViewAppointment() {
         });
     }
 
+    const deleteMedicalRecord = (e, id) => {
+        e.preventDefault();
+        
+        const thisClicked = e.currentTarget;
+        thisClicked.innerText = "Deleting";
+
+        axios.delete(`/api/delete-medicalrecord/${id}`).then(res=>{
+            if(res.data.status === 200)
+            {
+                swal("Deleted!",res.data.message,"success");
+                thisClicked.closest("tr").remove();
+            }
+            else if(res.data.status === 404)
+            {
+                swal("Error",res.data.message,"error");
+                thisClicked.innerText = "Delete";
+            }
+        });
+    }
+
     async function search(key) {
         console.warn(key)
         let result = await fetch("http://localhost:8000/api/search/"+key);
         console.log(result);
         result = await result.json();
+        global.key = key;
     
         var medicalrecords_HTMLTABLE = result.map((item, index) => {
           return (
@@ -66,10 +87,11 @@ function ViewAppointment() {
                 <td>{item.Against_Manufacturer_LotNo}</td>
                 <td>{item.vet_name}</td>
                 <td>
-                <td>
                     <Link to={`edit-medicalrecord/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                 </td>
-              </td>
+                <td>
+                    <button type="button" onClick={(e) => deleteMedicalRecord(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                </td>
             </tr>
           );
         });
@@ -78,7 +100,7 @@ function ViewAppointment() {
 
     if(loading)
     {
-        return <h4>Loading Vet Data...</h4>
+        return <h4>Loading Appointments and Medical Records Data...</h4>
     }
     else
     {
@@ -88,11 +110,10 @@ function ViewAppointment() {
             return (
                 
                 <tr key={index}>
-                    <td>{item.id}</td>
+                    <td>{item.pet}</td>
                     <td>{item.procedure}</td>
                     <td>{item.date}</td>
                     <td>{item.time}</td>
-                    <td>{item.pet}</td>
                     <td>{item.status}</td>
                     <td>
                         <Link to={`edit-appointment/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
@@ -138,11 +159,10 @@ function ViewAppointment() {
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>Pet ID</th>
                                             <th>Procedures</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                            <th>Pet</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>

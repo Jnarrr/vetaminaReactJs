@@ -14,6 +14,9 @@ function Dashboard() {
     const history = useHistory();
     let user = JSON.parse(localStorage.getItem('user-info'))
 
+    const [data, setData] = useState();
+    const [approveddata, setApprovedData] = useState();
+
     function logout()
     {
         localStorage.clear();
@@ -51,6 +54,20 @@ function Dashboard() {
             {
                 setVeterinaries(res.data.veterinaries)
                 setLoading(false);
+            }
+        });
+
+        axios.get(`/api/appointmentsCount/${user.id}`).then(response => {
+            if(response.status === 200)
+            {
+                setData(response.data.appointmentsCount)
+            }
+        });
+
+        axios.get(`/api/approvedAppointmentCount/${user.id}`).then(response => {
+            if(response.status === 200)
+            {
+                setApprovedData(response.data.appointmentsCount)
             }
         });
 
@@ -223,6 +240,10 @@ function Dashboard() {
         <>
         <Navbar />
         <div>
+            <div className="container">
+                <h2>Pending Appointments {data}</h2>
+                <h2>Approved Appointments {approveddata}</h2>
+            </div>
             
             <div className="container">
                 <h2>Hello {user.owner_name}</h2>

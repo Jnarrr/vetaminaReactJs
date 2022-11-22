@@ -27,6 +27,7 @@ const ClinicLogin = () =>
             alert("User is not yet Verified");
         }
         else{
+            global.owner_name = result.owner_name;
             history.push("/dashboard");
         }
     }
