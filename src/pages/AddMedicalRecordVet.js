@@ -32,7 +32,7 @@ function AddMedicalRecordVet() {
             Date:medicalrecordInput.Date,
             Weight:medicalrecordInput.Weight,
             Against_Manufacturer_LotNo:medicalrecordInput.Against_Manufacturer_LotNo,
-            vet_name:medicalrecordInput.veterinary,
+            vet_name:medicalrecordInput.vet_name,
         }
 
         axios.post(`/api/add-medicalrecord`, data).then(res => {
