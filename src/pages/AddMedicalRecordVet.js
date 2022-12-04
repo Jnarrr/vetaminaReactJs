@@ -8,10 +8,12 @@ function AddMedicalRecordVet() {
     let pet_id = global.key;
     let user = JSON.parse(localStorage.getItem('user-info'))
     let veterinary = user.vet_name;
+    let clinic_id = user.clinic_id;
     
     const history = useHistory();
     const [medicalrecordInput, setMedicalRecord] = useState({
         pet_id: pet_id,
+        clinic_id: clinic_id, 
         Date: '',
         Weight: '',
         Against_Manufacturer_LotNo: '',
@@ -29,6 +31,7 @@ function AddMedicalRecordVet() {
         
         const data = {
             pet_id:medicalrecordInput.pet_id,
+            clinic_id:medicalrecordInput.clinic_id,
             Date:medicalrecordInput.Date,
             Weight:medicalrecordInput.Weight,
             Against_Manufacturer_LotNo:medicalrecordInput.Against_Manufacturer_LotNo,
@@ -42,6 +45,7 @@ function AddMedicalRecordVet() {
                 swal("Success!",res.data.message,"success");
                 setMedicalRecord({
                     pet_id: '',
+                    clinic_id: '',
                     Date: '',
                     Weight: '',
                     Against_Manufacturer_LotNo: '',

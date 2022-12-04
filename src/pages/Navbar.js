@@ -20,6 +20,9 @@ function Navbar ()
               <li className="nav-item">
                 <Link className="nav-link" to="/appointment">Appointments</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/report">Reports</Link>
+              </li>
             </ul>
           </div>
         </div>

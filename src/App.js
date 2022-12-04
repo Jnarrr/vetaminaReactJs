@@ -38,6 +38,7 @@ import EditAppointment from './pages/EditAppointment';
 import AddMedicalRecord from './pages/AddMedicalRecord';
 import EditMedicalRecord from './pages/EditMedicalRecord';
 import AddMedicalRecordVet from './pages/AddMedicalRecordVet';
+import ReportPage from './pages/ReportPage';
 
 
 
@@ -88,6 +89,8 @@ function App() {
             <Route path="/add-medicalrecordVet" component={AddMedicalRecordVet} />
             <Route path="/edit-medicalrecord/:id" component={EditMedicalRecord} />
             <Route path="/edit-appointment/:id" component={EditAppointment} />
+
+            <Route path="/report" component={ReportPage} />
 
           </Switch>
         </Router>

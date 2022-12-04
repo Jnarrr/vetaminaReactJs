@@ -14,9 +14,10 @@ function ViewAppointment() {
     const [tablecustomerusers, setTableCustomerUsers] = useState(null);
 
     useEffect(() => {
-
         let user = JSON.parse(localStorage.getItem('user-info'));
-        axios.get(`/api/ClinicAppointments/${user.id}`).then(res=>{
+        let clinicID = user.id;
+
+        axios.get(`/api/ClinicAppointments/${clinicID}`).then(res=>{
             if(res.status === 200)
             {
                 setAppointments(res.data.appointments)
@@ -74,8 +75,9 @@ function ViewAppointment() {
     }
 
     async function search(key) {
+        let user = JSON.parse(localStorage.getItem('user-info'));
         console.warn(key)
-        let result = await fetch("http://localhost:8000/api/search/"+key);
+        let result = await fetch(`http://localhost:8000/api/search/${key}/${user.id}`);
         console.log(result);
         result = await result.json();
         global.key = key;

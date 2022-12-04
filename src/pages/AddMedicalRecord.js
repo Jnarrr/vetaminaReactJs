@@ -6,11 +6,13 @@ import swal from 'sweetalert';
 function AddMedicalRecord() {
 
     let pet_id = global.key;
+    let clinic_id = global.id;
     let vet_name = global.owner_name;
     
     const history = useHistory();
     const [medicalrecordInput, setMedicalRecord] = useState({
         pet_id: pet_id,
+        clinic_id: clinic_id, 
         Date: '',
         Weight: '',
         Against_Manufacturer_LotNo: '',
@@ -28,6 +30,7 @@ function AddMedicalRecord() {
         
         const data = {
             pet_id:medicalrecordInput.pet_id,
+            clinic_id:medicalrecordInput.clinic_id,
             Date:medicalrecordInput.Date,
             Weight:medicalrecordInput.Weight,
             Against_Manufacturer_LotNo:medicalrecordInput.Against_Manufacturer_LotNo,
@@ -41,6 +44,7 @@ function AddMedicalRecord() {
                 swal("Success!",res.data.message,"success");
                 setMedicalRecord({
                     pet_id: '',
+                    clinic_id: '',
                     Date: '',
                     Weight: '',
                     Against_Manufacturer_LotNo: '',

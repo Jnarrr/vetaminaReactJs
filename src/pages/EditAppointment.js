@@ -87,7 +87,6 @@ function EditAppointment(props) {
                                         <select type="text" id="status" name="status" onChange={handleInput} value={appointmentInput.status} className="form-control">
                                             <option value = {appointmentInput.status} disabled>{appointmentInput.status}</option>
                                             <option value = "Approved">Approved</option>
-                                            <option value = "In Queue">In Queue</option>
                                             <option value = "Declined">Declined</option>
                                         </select>
                                         <span className="text-danger">{errorInput.status}</span>

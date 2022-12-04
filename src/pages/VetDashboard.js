@@ -91,7 +91,7 @@ function VetDashboard() {
 
     async function search(key) {
         console.warn(key)
-        let result = await fetch("http://localhost:8000/api/search/"+key);
+        let result = await fetch(`http://localhost:8000/api/search/${key}/${user.clinic_id}`);
         console.log(result);
         result = await result.json();
         global.key = key;
